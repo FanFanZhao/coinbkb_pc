@@ -57,6 +57,8 @@ import ResetLegalPwd from '@/components/ResetLegalPwd' //重置密码密码
 import withdraw_address from '@/view/accounts/withdraw_address'
 import PayCannel from '@/components/PayCannel'  //取消订单
 import webNotice from '@/components/webNotice'
+import myCandy from '@/components/candy/myCandy'
+import candyExchange from '@/components/candy/candyExchange'
 
 Vue.use(Router)
 export default new Router({
@@ -67,7 +69,18 @@ export default new Router({
 			name: 'home',
 			component: home,
 
-			children: [{
+			children: [
+				{
+					path:'myCandy',
+					name:'myCandy',
+					component:myCandy
+				},
+				{
+					path:'candyExchange',
+					name:'candyExchange',
+					component:candyExchange
+				},
+				{
 					path: '',
 					name: 'homeContent',
 					component: homeContent

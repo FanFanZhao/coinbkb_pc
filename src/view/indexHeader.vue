@@ -18,7 +18,14 @@
        <!-- <router-link to="/helpcenter">{{$t('header.help')}}</router-link>
       <router-link v-if="token" to="/advice">{{$t('header.complaint')}}</router-link>
       <div v-else @click="goLogin()">{{$t('header.complaint')}}</div> -->
-      <div @click="candy">{{$t('header.candy')}}</div>
+      <!-- <div @click="candy">{{$t('header.candy')}}</div> -->
+       <div class="order">
+          <span>{{$t('header.candy')}}</span>
+          <ul class="order_list blue_bg">
+            <li class="now" @click="mycandy">我的糖果</li>
+            <li class="history" @click="candy_exchange">糖果兑换</li>
+          </ul>
+        </div>
        <div @click="candy">{{$t('header.coin')}}</div>
         <div @click="candy">{{$t('header.show')}}</div>
       <!-- <router-link to="/components/noticeList">公告</router-link>
@@ -122,8 +129,14 @@ export default {
     });
   },
   methods: {
-    candy(){ 
-       layer.msg(this.$t('lay.notopen'))   
+    mycandy(){ 
+      this.$router.push('myCandy')
+    },
+     candy_exchange(){ 
+      this.$router.push('candyExchange')
+    },
+    candy(){
+      layer.msg('暂未开放')
     },
     getNotice(){
       this.$http({
