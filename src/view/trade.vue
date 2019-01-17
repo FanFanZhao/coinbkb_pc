@@ -162,10 +162,10 @@ export default {
     eventBus.$on("toPrice", function(data) {
       console.log("-------------------------------------");
       console.log(data);
-      // if (data) {
-      //   that.buyPrice = data;
-      //   that.sellPrice = data;
-      // }
+      if (data) {
+        that.buyPrice = data;
+        that.sellPrice = data;
+      }
     });
     eventBus.$on("toTrade", function(data) {
       console.log(data);
