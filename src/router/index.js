@@ -59,7 +59,8 @@ import PayCannel from '@/components/PayCannel'  //取消订单
 import webNotice from '@/components/webNotice'
 import myCandy from '@/components/candy/myCandy'
 import candyExchange from '@/components/candy/candyExchange'
-
+import wakuang from '@/components/candy/wakuang'
+import mydownload from '@/components/candy/download'
 Vue.use(Router)
 export default new Router({
 	routes: [
@@ -76,9 +77,19 @@ export default new Router({
 					component:myCandy
 				},
 				{
+					path:'mydownload',
+					name:'mydownload',
+					component:mydownload
+				},
+				{
 					path:'candyExchange',
 					name:'candyExchange',
 					component:candyExchange
+				},
+				{
+					path:'wakuang',
+					name:'wakuang',
+					component:wakuang
 				},
 				{
 					path: '',

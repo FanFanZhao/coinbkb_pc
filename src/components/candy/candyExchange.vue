@@ -1,18 +1,25 @@
 <template>
     <div id="pay-opts">
-      <p>糖果兑换</p>
-      <div class="tips">
-        <p>{{$t('account.notice')}}：</p>
-        <a href="javascript:;" class="ft14 msg red" @click="openQQ">
-            糖果兑换需进QQ群:937068464
-		</a>
+      <p>{{$t('header.candychange')}}</p>
+      <div class="tips  ">
+       <div>
+            <p>{{$t('account.notice')}}：</p>
+           
+       </div>
+       <div class=" tc">
+           <div>
+                <a href="javascript:;" class="ft14 msg red" @click="openQQ">{{$t('header.candy_tip')}}:937068464</a>
+           </div>
+           
+           <img src="@/assets/images/qq_qun.png" alt="" class="w30">
+       </div>
       </div>
        
         <div class="inp-item tc">
-            可用糖果数量 {{balance}}
+            {{$t('header.candy_balance')}} {{balance}}
         </div>
         <div class="btn bgRed blue_bg" @click="add">
-            兑换
+            {{$t('header.candy_duihuan')}}
         </div>
     </div>
 </template>
@@ -27,6 +34,7 @@ export default {
     },
     created(){
         var _this=this;
+        _this.token=localStorage.getItem('token');
         _this.$http({
             url: "/api/candy/detail",
             method: "get",
@@ -36,19 +44,22 @@ export default {
             headers: { 'Authorization': _this.token,'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8', }
         }).then(res => {
             if(res.data.type=='ok'){
-                _this.balance=(res.data.number-0)+(res.data.invite-0);
+                 var message=res.data.message;
+                _this.balance=(message.number-0)+(message.invite-0);
             }
         })
     },
     methods:{
         openQQ(){
-            window.open('tencent://message/?uin=937068464');
+            window.open('https://jq.qq.com/?_wv=1027&k=5MhfOq7');
         },
         add(){
+            layer.msg($t('header.candy_notopen'));
+            return ;
             var _this=this;
             _this.$http({
                 url: "/api/candy/exchange",
-                method: "post",
+                method: "get",
                 data: {
                     number:_this.balance
                 },
@@ -67,7 +78,7 @@ export default {
 <style scoped lang='scss'>
 
 #pay-opts {
-  width: 80%;
+  width: 60%;
   margin: 50px auto;
   background: #fff;
   padding: 30px;

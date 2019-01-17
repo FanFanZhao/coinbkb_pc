@@ -8,8 +8,8 @@
       <router-link to="/" exact>{{$t('header.home')}}</router-link>
       <router-link to="/legalTrade" v-if="token">{{$t('header.c2c')}}</router-link>
       <div v-else @click="goLogin()">{{$t('header.c2c')}}</div>
-      <router-link v-if="token" to="/c2c">{{$t('header.c2cTransfer')}}</router-link>
-      <div v-else @click="goLogin()">{{$t('header.c2cTransfer')}}</div>
+      <!-- <router-link v-if="token" to="/c2c">{{$t('header.c2cTransfer')}}</router-link>
+      <div v-else @click="goLogin()">{{$t('header.c2cTransfer')}}</div> -->
       <router-link to="/dealCenter">{{$t('header.currency')}}</router-link>
       <router-link to="/myLegalShops" v-if="isShow">{{$t('header.shop')}}</router-link>
       <router-link to="/new_account" v-if="token">{{$t('header.assets')}}</router-link>
@@ -22,12 +22,14 @@
        <div class="order">
           <span>{{$t('header.candy')}}</span>
           <ul class="order_list blue_bg">
-            <li class="now" @click="mycandy">我的糖果</li>
-            <li class="history" @click="candy_exchange">糖果兑换</li>
+            <li class="now" @click="mycandy">{{$t('header.mycandy')}}</li>
+            <li class="history" @click="candy_exchange">{{$t('header.candychange')}}</li>
           </ul>
         </div>
-       <div @click="candy">{{$t('header.coin')}}</div>
-        <div @click="candy">{{$t('header.show')}}</div>
+        <router-link to="/wakuang" v-if="token">{{$t('header.wakuang')}}</router-link>
+        <div v-else @click="goLogin()">{{$t('header.wakuang')}}</div>
+       <!-- <div @click="candy">{{$t('header.coin')}}</div>
+        <div @click="candy">{{$t('header.show')}}</div> -->
       <!-- <router-link to="/components/noticeList">公告</router-link>
       <div class="coin-box">
         <router-link to="/currencyApply">上币申请</router-link>
@@ -307,7 +309,7 @@ export default {
       // height: 30px;
       // background: #fff;
       > img {
-        width: 100%;
+        width: 33%;
       }
     }
     > a,

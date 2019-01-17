@@ -38,7 +38,7 @@ window.eventBus = new Vue()
 let bus = new Vue()
 Vue.prototype.bus = bus
 // Vue.use(VueSocketio, 'http://47.75.200.255:2220/');
-Vue.use(VueSocketio, 'https://bankex.pro:2220/');
+Vue.use(VueSocketio, 'http://47.244.57.159:2220/');
 Vue.prototype.$changeTheme = function (type) {
 	var head = document.querySelector('head');
 	var link = document.querySelector('link#darkTheme');

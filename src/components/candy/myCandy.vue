@@ -1,11 +1,11 @@
 <template>
     <div class="entrust clr-part">
-       <div class=" title ">
-           我的糖果
+       <div class="title">
+           {{$t('header.mycandy')}}
        </div>
-       <div class="w50 pdlr20">
-           <p class="pdb20 flex alcenter between"><span>领取数量</span><span>{{number}}糖果</span></p>
-           <p class="flex alcenter between"><span>邀请奖励</span><span>{{invite}}糖果</span></p>
+       <div class=" pdlr20">
+           <p class="pdb20 flex alcenter between"><span>{{$t('header.candy_number')}}</span><span>{{number}}{{$t('header.candyname')}}</span></p>
+           <p class="flex alcenter between"><span>{{$t('header.candy_invite')}}</span><span>{{invite}}{{$t('header.candyname')}}</span></p>
        </div>
     </div>
 </template>
@@ -21,6 +21,7 @@ export default {
     },
     created(){
           var _this=this;
+          _this.token=localStorage.getItem('token');
             _this.$http({
                 url: "/api/candy/detail",
                 method: "get",
@@ -28,9 +29,11 @@ export default {
                 },
                 headers: { 'Authorization': _this.token,'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8', }
             }).then(res => {
+                console.log(res);
                 if(res.data.type=='ok'){
-                    _this.number=res.data.number;
-                    _this.invite=res.data.invite;
+                    var message=res.data.message;
+                    _this.number=message.number;
+                    _this.invite=message.invite;
                 }
             })
     },
@@ -45,7 +48,7 @@ export default {
 </script>
 <style scoped>
 .entrust{
-    width: 80%;
+    width: 60%;
     margin: 50px auto;
     background: #fff;
     padding: 30px;
