@@ -72,18 +72,19 @@ export default {
 
 }
 </script>
-<style scoped>
+<style scoped lang="scss">
     .wk_box{
-        width: 60%;
+        width: 80%;
         margin: 50px auto;
         background: #fff;
         padding: 30px;
+        .content_top{
+            height: 45px;
+            line-height: 45px;
+            border-bottom: 1px solid #eee;
+        }
     }
-    .content_top{
-        height: 45px;
-        line-height: 45px;
-        border-bottom: 1px solid #eee;
-    }
+    
     .pdt10{padding-top: 10px;}
 </style>
 

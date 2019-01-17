@@ -1,5 +1,5 @@
 <template>
-    <div id="pay-opts">
+    <div id="pay-optsw">
       <p>{{$t('header.candychange')}}</p>
       <div class="tips  ">
        <div>
@@ -77,7 +77,7 @@ export default {
 </script>
 <style scoped lang='scss'>
 
-#pay-opts {
+#pay-optsw {
   width: 60%;
   margin: 50px auto;
   background: #fff;
