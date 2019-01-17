@@ -30,20 +30,35 @@
                         <router-link :to="{path:'/myCandy'}" tag="span"  class="mr15" >{{$t('header.candy')}}</router-link>
                         <!-- <router-link :to="{path:'/candyExchange'}" tag="span">{{$t('footer.teach')}}</router-link> -->
                     </li>
+                    <li class="">
+                        <router-link :to="{path:'/webNotice'}" class="mr15" tag="span">{{$t('footer.gonggao')}}</router-link>
+                    </li>
                 </ul>
                 <ul class="mr120 ft12 foot_ul">
                     <li class="mb15">{{$t('footer.about')}}</li>
                     <li class="mb15">
-                        <router-link :to="{path:'/components/noticeDetail',query:{id:46}}" class="mr15" tag="span">Coinbkb</router-link>
+                        <!-- <router-link :to="{path:'/components/noticeDetail',query:{id:46}}" class="mr15" tag="span">Coinbkb</router-link> -->
                         <router-link :to="{path:'/mydownload'}" tag="span">{{$t('footer.download')}}</router-link>
                     </li>
                      <li class="mb15">
-                        <router-link :to="{path:'/components/noticeDetail',query:{id:47}}" class="mr15" tag="span">{{$t('footer.connect')}}</router-link>
+                        <!-- <router-link :to="{path:'/components/noticeDetail',query:{id:47}}" class="mr15" tag="span">{{$t('footer.connect')}}</router-link> -->
                         <router-link :to="{path:'/helpcenter'}" tag="span">{{$t('header.help')}}</router-link>
                     </li>
                     <li class="mb15">
-                        <router-link :to="{path:'/webNotice'}" class="mr15" tag="span">{{$t('footer.gonggao')}}</router-link>
                         <router-link :to="{path:'/advice'}" tag="span">{{$t('header.complaint')}}</router-link>
+                    </li>
+                </ul>
+                <ul class="mr120 ft12 foot_ul">
+                    <li class="mb15">{{$t('footer.connect')}}</li>
+                    <li class="mb15">
+                    <p class="contact mt20">
+                      <a href="https://twitter.com/Coinbkb2019" target="_blank"><img src="../assets/images/tt.png" alt=""></a>
+                      <a href="https://0.plus/coinbkb" target="_blank"><img src="../assets/images/by.png" alt=""></a>
+                      <a href="http://qm.qq.com/cgi-bin/qm/qr?k=9tVzZQonwzlsGap_ZN3SouxOMTNg-pi2" target="_blank">
+                         <img src="../assets/images/qq.png" alt="">
+                      </a>
+                    </p>
+                    <p class="mt20 ft12">{{$t('footer.swemail')}}：coinbkb@sina.com</p>
                     </li>
                 </ul>
                 <ul class="ft12 foot_ul">
@@ -103,6 +118,11 @@ export default {
 }
 .foot_ul li:first-child:hover{
    color: inherit;
+}
+.contact img{
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
 }
 // #footer{
    

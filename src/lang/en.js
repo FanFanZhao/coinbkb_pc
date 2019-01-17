@@ -72,7 +72,8 @@ export default {
      yinsi:'Privacy clause',
      legal:'Legal statement',
      feilv:'transaction rate',
-     gonggao:'Website announcement'
+     gonggao:'Website announcement',
+     swemail:'Business email'
   },
   home:{
     myMarkets:'My markets',

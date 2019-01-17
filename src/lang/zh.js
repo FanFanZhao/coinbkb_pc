@@ -75,7 +75,8 @@ export default {
      yinsi:'隐私条款',
      legal:'法律声明',
      feilv:'交易费率',
-     gonggao:'网站公告'
+     gonggao:'网站公告',
+     swemail:'商务邮箱'
   },
   home:{
     with:'对',

@@ -132,10 +132,10 @@ export default {
   },
   methods: {
     mycandy(){ 
-      this.$router.push('myCandy')
+      this.$router.push('/myCandy')
     },
      candy_exchange(){ 
-      this.$router.push('candyExchange')
+      this.$router.push('/candyExchange')
     },
     candy(){
       layer.msg('暂未开放')
