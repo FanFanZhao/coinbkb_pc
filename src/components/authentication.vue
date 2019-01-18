@@ -17,7 +17,7 @@
                         <input type="text" :placeholder="$t('auth.truenum')" id="card" v-model="card_id">
                     </div>
                 </div>
-                <div class="mt40 fColor1 ft14 tc">{{$t('auth.img')}}</div>
+                <div class="mt40 redColor ft14 tc">{{$t('auth.img')}} </div>
                 <div class="idimg flex center mt40">
                     <div>
                         <img :src="src01" alt="">
@@ -65,7 +65,7 @@ export default {
            src3:'',
            src01:'../../static/imgs/cardFront.jpg',
            src02:'../../static/imgs/cardBack.jpg',
-           src03:'../../static/imgs/hdimg.jpg',
+           src03:'../../static/imgs/hand.png',
            review_status:'',
            reply:''
         }

@@ -716,12 +716,15 @@ export default {
     li {
       padding: 0 40px;
       color: #ddd;
-      border-bottom: 1px solid #fff;
-      border-right: 1px solid #fff;
+     
       // box-shadow: 0 0 1px hsla(231, 9%, 54%, 0.2);
     }
     .activeCoin {
       border-bottom: none;
+      color: #459e80;
+       border-bottom: 1px solid #459e80;
+      border-right: 1px solid #459e80;
+      border-left: 1px solid #459e80;
       // color: #d45858;
     }
   }

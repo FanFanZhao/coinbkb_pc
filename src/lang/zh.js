@@ -196,7 +196,7 @@ export default {
     refause:'拒绝理由',
     name:'姓名',
     idnum:'证件号',
-    img:'请上传证件的正反面及手持证件的正面照。',
+    img:'请上传证件的正反面及手持证件的正面照,手持身份证需加(Coinbkb认证：日期 xxxx年xx月xx日)，认证当天日期，如下示例图：',
     ising:'审核中...',
     ised:'已认证!',
     truename:'请输入真实姓名',

@@ -191,7 +191,7 @@ export default {
     refause:'Reasons for refusal',
     name:'name',
     idnum:'CAAC Certificate No',
-    img:'Please upload the positive and negative sides of the certificate and the front photos of the hand-held certificate.',
+    img:'Please upload both the front and the back of your id card and the front photo of your id card. You need to add your id card (Coinbkb certification: date XXXX, xx, xx, xx). The date of certification is as follows:',
     ising:'In audit',
     ised:'Certified!',
     truename:'Please enter your real name',

@@ -5,11 +5,11 @@
            <li v-for="(item,index) in lists" :key="index">
                <div class="list-item">
                <div class="mb10 flex between">
-               <h2 class="creat">{{$t('ad.release')}}：{{item.content}}</h2>
+               <h2 class="creat"  style="word-wrap:break-word;word-break: break-all;">{{$t('ad.release')}}：{{item.content}}</h2>
                <span class="fr ft12">{{item.create_time}}</span>
                </div>
                 <div class=" flex between">
-               <p class="ft14 reply">{{$t('ad.reply')}}：{{item.reply_content||$t('ad.none')}}</p>
+               <p class="ft14 reply" style="word-wrap:break-word;word-break: break-all;">{{$t('ad.reply')}}：{{item.reply_content||$t('ad.none')}}</p>
                <span class="fr ft12">{{item.reply_time||''}}</span>
                </div>
                </div>
