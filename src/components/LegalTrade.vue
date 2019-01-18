@@ -466,8 +466,9 @@
 
 				>.now {
 					>.current {
-						border-bottom: 2px solid #194B64;
-						color: #194B64;
+						    background: #459e80;
+							color: #fff;
+							padding: 8px 15px;
 					}
 				}
 			}

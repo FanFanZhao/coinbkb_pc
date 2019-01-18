@@ -1,7 +1,7 @@
 <template>
-     <div id="pay-opts">
+     <div id="pay-optsdown">
       <p>{{$t('footer.download')}}</p>
-        <div class="btn bgRed blue_bg flex mt40 pdlr20 pdtb20 jscenter">
+        <div class="bgRed blue_bg flex mt40 pdlr20 pdtb20 jscenter">
             <div class="item positionR flex alcenter  jscenter mr20 ">
                 <img src="@/assets/images/an.png" alt="" class="img_logo mr10">
                 <span>{{$t('footer.anzhuo')}}</span>
@@ -21,7 +21,7 @@ export default {
 }
 </script>
 <style scoped lang='scss'>
-#pay-opts {
+#pay-optsdown {
   width: 60%;
   margin: 50px auto;
   background: #fff;

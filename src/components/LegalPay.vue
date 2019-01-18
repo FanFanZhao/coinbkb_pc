@@ -49,7 +49,7 @@
         <span v-if="msg.user_cash_info">{{msg.user_cash_info.account_number}}</span>
       </div>
       
-      
+        <p class="red">请在30分钟内完成付款，否则交易将自动取消</p>
       
       <div class="btns flex" v-show="msg.is_sure==0&&msg.type=='buy'">
         <!-- <div class="btn" @click="showCancel = true">{{$t('legal.orderceil')}}</div> -->
