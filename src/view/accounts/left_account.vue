@@ -36,6 +36,13 @@
 						text: this.$t('account.laccount'),
 						page:'legal',
 						children:['legal']
+					},
+					{
+						src1: require("@/assets/images/icon_delegate.png"),
+						src2: require("@/assets/images/icon_delegate_s.png"),
+						text: this.$t('account.suocang'),
+						page:'lock',
+						children:['lock']
 					}
 					
 				],
