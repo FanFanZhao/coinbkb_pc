@@ -5,12 +5,12 @@
             <div class="item positionR flex alcenter  jscenter mr20 ">
                 <img src="@/assets/images/an.png" alt="" class="img_logo mr10">
                 <span>{{$t('footer.anzhuo')}}</span>
-                <img src="@/assets/images/an_qr.png" alt="" class="mt20 abst ewm">
+                <img src="@/assets/images/an_qr.jpg" alt="" class="mt20 abst ewm">
             </div>
             <div class="item positionR flex alcenter  jscenter mr20 ">
                 <img src="@/assets/images/an.png" alt="" class="img_logo mr10">
                 <span>{{$t('footer.appledown')}}</span>
-                <img src="@/assets/images/an_qr.png" alt="" class="mt20 abst ewm">
+                <img src="@/assets/images/an_qr.jpg" alt="" class="mt20 abst ewm">
             </div>
         </div>
     </div>

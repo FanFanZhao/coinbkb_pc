@@ -362,7 +362,7 @@ export default {
     range:'range',
     havenum:'Number of accounts payable',
     minnum:'The minimum withdrawal amount is',
-    uppwd:'Mention money password',
+    uppwd:'password',
     call:'In order to ensure the security of funds, when your account security policy changes, password changes, we will carry out manual verification of the withdrawal of money, please wait patiently for staff telephone or e-mail contact.',
     security:'Make sure your computer and browser are secure to prevent information from being tampered with or leaked.',
     a1:'Do not recharge any non-',
