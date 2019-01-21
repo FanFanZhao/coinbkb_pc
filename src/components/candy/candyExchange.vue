@@ -54,8 +54,8 @@ export default {
             window.open('https://jq.qq.com/?_wv=1027&k=5MhfOq7');
         },
         add(){
-            layer.msg($t('header.candy_notopen'));
-            return ;
+            // layer.msg(this.$t('header.candy_notopen'));
+            // return ;
             var _this=this;
             _this.$http({
                 url: "/api/candy/exchange",

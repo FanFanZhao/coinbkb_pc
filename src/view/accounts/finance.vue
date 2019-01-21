@@ -81,9 +81,9 @@
                            <div class="left_inp_wrap flex1">
                                <p class="fColor2 ft12 mb15">
                                    <span>{{$t('rate')}}</span>
-                                   <!-- <span>{{$t('account.range')}}：<span>{{ratenum}}</span></span> -->
+                                   <span>({{rate}})</span>
                                </p>
-                               <label class="range_lab flex alcenter between"><input class="clr-part" disabled  type="text" v-model="rates" /><span>{{coinname}}</span></label>
+                               <label class="range_lab flex alcenter between"><input class="clr-part" disabled  type="text" v-model="rate" /><span>{{coinname}}</span></label>
                            </div>
                            <div class="right_inp_wrap flex1">
                                <p class=" mb15">
@@ -213,7 +213,7 @@ export default {
                     return parseInt(f * m, 10) / m; 
                 } 
                var rateNum = Math.formatFloat(this.number*this.rate,5);
-             return numSub(this.number,rateNum);
+             return numSub(this.number,this.rate);
          },
          rates(){
             function numMulti(num1, num2) {  //解决乘法计算精度
@@ -228,7 +228,15 @@ export default {
                 }
                 return Number(num1.toString().replace(".", "")) * Number(num2.toString().replace(".", "")) / Math.pow(10, baseNum);
             };
-              return numMulti(this.number,this.rate)
+            function Subtr(arg1,arg2){ 
+                var r1,r2,m,n; 
+                try{r1=arg1.toString().split(".")[1].length}catch(e){r1=0} 
+                try{r2=arg2.toString().split(".")[1].length}catch(e){r2=0} 
+                m=Math.pow(10,Math.max(r1,r2)); 
+                n=(r1>=r2)?r1:r2; 
+                return ((arg1*m-arg2*m)/m).toFixed(n); 
+            }
+              return Subtr(this.number,this.rate)
          }   
     },
     methods:{
