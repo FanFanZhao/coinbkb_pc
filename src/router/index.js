@@ -27,6 +27,7 @@ import aceite from '@/view/aceite'
 import region from '@/view/region'
 import chargeRecord from '@/view/chargeRecord'
 import new_account from '@/components/new_account'
+import lock from '@/view/accounts/lock'
 import finance from '@/view/accounts/finance'
 import lever from '@/view/accounts/lever'
 import finanrec from '@/view/accounts/finanrec'
@@ -299,6 +300,11 @@ export default new Router({
 							path: 'legal',
 							name: 'legal',
 							component: legal
+						},
+						{
+							path:'lock',
+							name:'lock',
+							component:lock
 						},
 						{
 							path: '/legalAccount/:currency_id',
