@@ -213,7 +213,7 @@ export default {
                     return parseInt(f * m, 10) / m; 
                 } 
                var rateNum = Math.formatFloat(this.number*this.rate,5);
-             return numSub(this.number,rateNum);
+             return numSub(this.number,this.rate);
          },
          rates(){
             function numMulti(num1, num2) {  //解决乘法计算精度

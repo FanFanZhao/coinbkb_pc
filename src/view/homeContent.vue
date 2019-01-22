@@ -41,7 +41,7 @@
 
      
         <div class="notice">
-           <ul class="flex alcenter center notice_ul">
+           <ul class="flex alcenter center notice_ul " style="max-width:90%;margin:10px auto;border:2px dashed #2914da">
                <li v-for="item in noticeList" :key="item.id" class="fl notice_li" @click="$router.push({path:'components/noticeDetail',query:{id:item.id}})"><a class="notice_a ft14" :data-id='item.id'>{{item.title}}</a></li>
            </ul>
         </div>
@@ -832,7 +832,7 @@ export default {
 }
 .notice_li a {
   padding: 0 25px;
-  letter-spacing: 5px;
+  letter-spacing: 2px;
 }
 .notice_li::after {
   content: "/";
