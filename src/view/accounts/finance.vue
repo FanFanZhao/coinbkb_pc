@@ -81,9 +81,9 @@
                            <div class="left_inp_wrap flex1">
                                <p class="fColor2 ft12 mb15">
                                    <span>{{$t('rate')}}</span>
-                                   <!-- <span>{{$t('account.range')}}：<span>{{ratenum}}</span></span> -->
+                                   <span><span>{{rate}}</span></span>
                                </p>
-                               <label class="range_lab flex alcenter between"><input class="clr-part" disabled  type="text" v-model="rates" /><span>{{coinname}}</span></label>
+                               <label class="range_lab flex alcenter between"><input class="clr-part" disabled  type="text" v-model="rate" /><span>{{coinname}}</span></label>
                            </div>
                            <div class="right_inp_wrap flex1">
                                <p class=" mb15">
