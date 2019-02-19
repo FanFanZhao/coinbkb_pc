@@ -30,11 +30,11 @@
         <div v-else @click="goLogin()">{{$t('header.wakuang')}}</div>
        <!-- <div @click="candy">{{$t('header.coin')}}</div>
         <div @click="candy">{{$t('header.show')}}</div> -->
-      <!-- <router-link to="/components/noticeList">公告</router-link>
+      <!-- <router-link to="/components/noticeList">公告</router-link>-->
       <div class="coin-box">
         <router-link to="/currencyApply">上币申请</router-link>
         <router-link to="/currencyList" >币种列表</router-link>
-      </div>-->
+      </div>
       <!-- <div>
         <div class="download">
           <div>app下载</div>
