@@ -96,6 +96,7 @@ export default {
   },
   created() {
     //获取所有省份
+    this.invite=this.$route.query.code;
     console.log(this.country)
   },
   methods: {

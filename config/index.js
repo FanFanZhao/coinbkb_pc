@@ -14,7 +14,7 @@ module.exports = {
     proxyTable: {
         '/api': {
             // target: 'http://47.75.200.255:8080/api',//后端接口地址
-            target: 'http://dalao.cxuyuan.com/api',//后端接口地址
+            target: 'http://www.coinbkb.net/api',//后端接口地址
             changeOrigin: true,//是否允许跨越
             pathRewrite: {
                 '^/api': '/',//重写,
@@ -23,7 +23,7 @@ module.exports = {
     },
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST
-    port: 8011, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
+    port: 8013, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
     autoOpenBrowser: false,
     errorOverlay: true,
     notifyOnErrors: true,
