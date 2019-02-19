@@ -15,7 +15,6 @@
                <div class="swiper-slide sliders" v-for="(item,index) in pics" :key="index">
                    <img :src="item.pic" alt="">
                </div>
-              
             </div>
              <div class="swiper-pagination swiper-pagination02"></div>
         </div>
