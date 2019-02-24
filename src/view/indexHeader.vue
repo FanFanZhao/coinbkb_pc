@@ -31,10 +31,18 @@
        <!-- <div @click="candy">{{$t('header.coin')}}</div>
         <div @click="candy">{{$t('header.show')}}</div> -->
       <!-- <router-link to="/components/noticeList">公告</router-link>-->
-      <div class="coin-box">
+      <div class="order">
+          <span> <router-link to="/currencyList">免费投票上币</router-link></span>
+          <ul class="order_list blue_bg">
+            <li class="now" >
+             <router-link to="/currencyApply" >上币申请</router-link>
+            </li>
+          </ul>
+        </div>
+      <!-- <div class="coin-box">
         <router-link to="/currencyApply">上币申请</router-link>
         <router-link to="/currencyList" >币种列表</router-link>
-      </div>
+      </div> -->
       <!-- <div>
         <div class="download">
           <div>app下载</div>

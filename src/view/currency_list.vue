@@ -1,35 +1,51 @@
 <template>
     <div class="wrap currency-lst">
+        <p class="tr apply">
+            <router-link class=" red " to="/currencyApply" >上币申请</router-link>
+        </p>
         <ul class="ul">
             <li class="flex alcenter list_title ft14">
-                <span class="flex1 tc">账号</span>
-                <span class="flex1 tc">币种交易符号</span>
-                <span class="flex1 tc">币种中文名</span>
-                <span class="flex1 tc">币种总量</span>
+                <span class="flex1 tc">币种名称</span>
+                <span class="flex1 tc">投票进度</span>
+                <span class="flex1 tc">投票总数</span>
                  <span class="flex1 tc">操作</span>
             </li>
             <li v-for="(item,index) in currency_list" :key="index" class="flex alcenter list_item ft12">
-                <span class="flex1 tc">{{item.email}}</span>
-                <span class="flex1 tc">{{item.token}}</span>
-                <span class="flex1 tc">{{item.chinese_name}}</span>
-                <span class="flex1 tc">{{item.sum}}</span>
-                 <span class="flex1 tc red" @click="edit(item.id)">编辑</span>
+                <span class="flex1 tc">{{item.name}}</span>
+                <div class="flex1 pro flex alcenter jscenter">
+                    <div class=" tc pro_box">
+                        <div :style="{width:item.count/500*100+'%'}"></div>
+                    </div>
+                    <p>{{(item.count/500*100).toFixed(2)+'%'}} </p>
+                </div>
+                <span class="flex1 tc">{{item.count}}票</span>
+                 <span class="flex1 tc red" @click="edit(item.id)">投票</span>
             </li>
         </ul>
+        <pre class="mt20 red" style="line-height:1.5">
+            免费投票上币规则:
+            <br>
+            1；币种申请后开启上币投票，10天倒计时。
+            2；币种投票满额500票视为投票成功，一天内上架币种开放交易，未完成500票视为上币失败。
+            3；每一位用户单个币种只有一次投票机会，不能重复投票，投票需实名认证。
+            4；每投一票消耗10枚bkbc。
+            5；免费投票上币,三天内上线交易。
+        </pre>
     </div>
 </template>
 <script>
 export default {
      data(){
          return{
-            currency_list:[]
+            currency_list:[],
+            per:0,
          }
      },
      created(){
-        this.token = window.localStorage.getItem("token") || "";
-        if(this.token == ''){
-        this.$router.push('/components/login');
-    }
+        // this.token = window.localStorage.getItem("token") || "";
+        // if(this.token == ''){
+        // this.$router.push('/components/login');
+    // }
      },
      mounted(){
         this.init();
@@ -37,19 +53,40 @@ export default {
      methods:{
          init(){
              this.$http({
-                  url: "/api/currency/request_add_currency_list",
+                  url: "/api/submit/submit_list",
                   method: "get",
-                  headers: { Authorization: this.token },
 
              }).then(res =>{
                   console.log(res);
                   if(res.data.type == 'ok'){
-                      this.currency_list = res.data.message.data;
+                      this.currency_list = res.data.message;
                   }
              })
          },
          edit(id){
-             this.$router.push({name:'currencyEdit',params:{id:id}})
+             var _this=this;
+               _this.token = window.localStorage.getItem("token") || "";
+                if(_this.token == ''){
+                    _this.$router.push('/components/login');
+                    return;
+                }
+            
+              _this.$http({
+                  url: "/api/vote/add_vote",
+                  data:{
+                      id:id
+                  },
+                  method: "post",
+                headers: { Authorization: localStorage.getItem("token") }
+             }).then(res =>{
+                  console.log(res);
+                  layer.msg(res.data.message) ;
+
+                  if(res.data.type=='ok'){
+                     _this.init();
+                  }
+                 
+             })
             
          }
      }
@@ -57,13 +94,16 @@ export default {
 </script>
 <style scoped>
     .wrap{
-        width: 1200px;
+        width: 75%;
         margin: 50px auto;
         min-height: 700px;
     }
     .ul li{
         padding: 20px 0;
         border-bottom: 1px solid #eee;
+    }
+    .jscenter{
+        justify-content: center;
     }
     .list_title{
         background: #eee;
@@ -73,5 +113,23 @@ export default {
     }
     .red:hover{
         cursor: pointer;
+    }
+    .pro_box{
+        background: #ddd;
+        height: 16px;
+        line-height: 16px;
+        text-align: center;
+        width: 60%;
+        margin-right: 20px;
+
+    }
+    .pro_box >div{
+        background: #d45858;
+        height: 16px;
+        color: #d45858;
+    }
+    .apply{
+        padding-bottom:20px;
+        font-size: 20px;
     }
 </style>
