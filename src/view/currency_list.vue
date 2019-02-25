@@ -6,19 +6,18 @@
         <ul class="ul">
             <li class="flex alcenter list_title ft14">
                 <span class="flex1 tc">币种名称</span>
-                <span class="flex1 tc">投票进度</span>
-                <span class="flex1 tc">投票总数</span>
+                <span class="flex2 tc">投票进度</span>
                  <span class="flex1 tc">操作</span>
             </li>
             <li v-for="(item,index) in currency_list" :key="index" class="flex alcenter list_item ft12">
                 <span class="flex1 tc">{{item.name}}</span>
-                <div class="flex1 pro flex alcenter jscenter">
+                <div class="flex2 pro flex alcenter jscenter">
                     <div class=" tc pro_box">
                         <div :style="{width:item.count/500*100+'%'}"></div>
                     </div>
-                    <p>{{(item.count/500*100).toFixed(2)+'%'}} </p>
+                    <p class="w20 flex between"><span class="">{{(item.count/500*100).toFixed(2)+'%'}}</span>  <span class="">{{item.count}}票</span></p>
                 </div>
-                <span class="flex1 tc">{{item.count}}票</span>
+                
                  <span class="flex1 tc red" @click="edit(item.id)">投票</span>
             </li>
         </ul>
@@ -26,7 +25,7 @@
             免费投票上币规则:
             <br>
             1；币种申请后开启上币投票，10天倒计时。
-            2；币种投票满额500票视为投票成功，一天内上架币种开放交易，未完成500票视为上币失败。
+            2；币种投票满额500票视为投票成功，三天内上架币种开放交易，未完成500票视为上币失败。
             3；每一位用户单个币种只有一次投票机会，不能重复投票，投票需实名认证。
             4；每投一票消耗10枚bkbc。
             5；免费投票上币,三天内上线交易。
@@ -94,7 +93,7 @@ export default {
 </script>
 <style scoped>
     .wrap{
-        width: 75%;
+        width: 80%;
         margin: 50px auto;
         min-height: 700px;
     }
@@ -119,7 +118,7 @@ export default {
         height: 16px;
         line-height: 16px;
         text-align: center;
-        width: 60%;
+        width: 78%;
         margin-right: 20px;
 
     }
