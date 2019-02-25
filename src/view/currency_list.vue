@@ -7,6 +7,7 @@
             <li class="flex alcenter list_title ft14">
                 <span class="flex1 tc">币种名称</span>
                 <span class="flex2 tc">投票进度</span>
+                <span class="flex1 tc">倒计时</span>
                  <span class="flex1 tc">操作</span>
             </li>
             <li v-for="(item,index) in currency_list" :key="index" class="flex alcenter list_item ft12">
@@ -17,7 +18,7 @@
                     </div>
                     <p class="w20 flex between"><span class="">{{(item.count/500*100).toFixed(2)+'%'}}</span>  <span class="">{{item.count}}票</span></p>
                 </div>
-                
+                <span class="flex1 tc">10天24小时18分钟60秒</span>
                  <span class="flex1 tc red" @click="edit(item.id)">投票</span>
             </li>
         </ul>
@@ -93,7 +94,7 @@ export default {
 </script>
 <style scoped>
     .wrap{
-        width: 80%;
+        width: 85%;
         margin: 50px auto;
         min-height: 700px;
     }
