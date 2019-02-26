@@ -7,7 +7,7 @@
             <li class="flex alcenter list_title ft14">
                 <span class="flex1 tc">币种名称</span>
                 <span class="flex2 tc">投票进度</span>
-                <span class="flex1 tc">倒计时</span>
+                <span class="flex1 tc">截止日期</span>
                  <span class="flex1 tc">操作</span>
             </li>
             <li v-for="(item,index) in currency_list" :key="index" class="flex alcenter list_item ft12">
