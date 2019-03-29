@@ -64,7 +64,7 @@
                 </ul>
                 <ul v-show="!isSocketComplet" v-for="itm in deList2" class="list-item color ft12">
                     <li class="clear flex clr-part bg-hov alcenter">
-                        <span class=" ">{{itm.ts}}</span>
+                        <span class=" ">{{itm.ts | timeToFormat}}</span>
                         <span :class="itm.direction == 'buy'?'red':'green'">{{itm.direction == 'buy'?$t('center.outsell'):$t('center.inbuy')}}</span>
                         <span :class="itm.direction == 'buy'?'red':'green'">{{itm.price}}</span>
                         <span class="">{{itm.amount}}</span>
@@ -148,7 +148,26 @@ export default {
   sockets: {
 
   },
+  filters:{
+    timeToFormat(t){
+      function add0(m){return m<10?'0'+m:m };
+      var that=this;
+      console.log(t);
+      //shijianchuo是整数，否则要parseInt转换
+      var time = new Date(t);
+      var y = time.getFullYear();
+      var m = time.getMonth()+1;
+      var d = time.getDate()+1;
+      var h = time.getHours()+1;
+      var mm = time.getMinutes()+1;
+      var s = time.getSeconds()+1;
+      return y+'-'+add0(m)+'-'+add0(d)+' '+add0(h)+':'+add0(mm)+':'+add0(s);
+ 
+    }
+  },
   methods: {
+    
+    
     price(price) {
       eventBus.$emit("toPrice", price);
     },
@@ -212,7 +231,7 @@ export default {
       // console.log(legal_id, currency_id);
       var that = this;
       console.log("socket");
-      that.$socket.emit("login", this.$makeSocketId());
+      $socket.emit("login", this.$makeSocketId());
       that.$socket.on("market_trade", msg => {
         console.log(msg);
         console.log(msg.data);
@@ -364,6 +383,12 @@ export default {
           }
           that.outlist2=sells;
           that.inlist2=buys;
+          // that.newData = msg.last_price;
+          var priceData = {
+             buyPrice:buys.length !=0?inData[0][1]:'',
+             sellPrice:outData.length !=0?outData[len02-1][1]:''
+          }
+           eventBus.$emit("priceToTrade", priceData);
         }
       });
     }
