@@ -2,7 +2,7 @@
     <div class="market clr-part">
 		<div class="m_title  flex" style="padding:20px 0 ">
             <span style="width:100px">{{$t('market.market')}}</span>
-            <el-input v-model="keyword" size="mini" clearable :placeholder="$t('inpCur')"></el-input>
+            <el-input v-model="keyword" size="mini" clearable :placeholder="$t('inpCur')" value=" "></el-input>
         </div>
         <div class="m_filter">
             <div class="tabtitle ft14 curPer flex around">

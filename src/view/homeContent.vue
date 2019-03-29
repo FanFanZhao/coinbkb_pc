@@ -459,10 +459,10 @@ export default {
         
           $("li[data-name='" + cname + "']")
           .find(".high_price")
-          .html((msg.high_price-0).toFixed(8));
+          .html((msg.high-0).toFixed(8));
           $("li[data-name='" + cname + "']")
           .find(".low_price")
-          .html((msg.low_price-0).toFixed(8));
+          .html((msg.low-0).toFixed(8));
            $("li[data-name='" + cname + "']")
           .find(".volume")
           .html((msg.volume-0).toFixed(5));

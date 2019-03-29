@@ -11,16 +11,30 @@
                 <span>{{$t('number')}}({{currency_name}})</span>
             </div>
             <ul class="list-item ft12 tc">
-                <li :class="['curPer','redColor','bg-hov',{'bg-evev':index%2 != 0}]" v-for="(out,index) in outlist" @click="price(out.price)">
+                <li v-show="isSocketIn" :class="['curPer','redColor','bg-hov',{'bg-evev':index%2 != 0}]" v-for="(out,index) in outlist" @click="price(out.price)">
                     <span >{{$t('center.sellout')}} {{outlist.length-index}}</span>
                     <span style="font-weight:600">{{out.price}}</span>
                     <span>{{out.number}}</span>
                 </li>
+                 <li v-show="!isSocketIn" :class="['curPer','redColor','bg-hov',{'bg-evev':index%2 != 0}]" v-for="(out,index) in outlist2" @click="price(out.price)">
+                    <div v-if="index<7" class="flex1">
+                      <span >{{$t('center.sellout')}} {{7-index}}</span>
+                      <span style="font-weight:600">{{out[1]}}</span>
+                      <span>{{out[0]}}</span>
+                    </div>
+                </li>
                 <div class="line bdr-part"></div>
-                 <li class="curPer ceilColor bg-hov" v-for="(buy,inde) in inlist"  @click="price(buy.price)">
+                 <li v-show="isSocketOut" class="curPer ceilColor bg-hov" v-for="(buy,inde) in inlist"  @click="price(buy.price)">
                     <span>{{$t('center.buyin')}} {{inde+1}}</span>
                     <span style="font-weight:600">{{buy.price}}</span>
                     <span>{{buy.number}}</span>
+                </li>
+                 <li v-show="!isSocketOut" class="curPer ceilColor bg-hov" v-for="(buy,inde) in inlist2"  @click="price(buy.price)">
+                    <div v-if="inde<7" class="flex1">
+                      <span>{{$t('center.buyin')}} {{inde+1}}</span>
+                      <span style="font-weight:600">{{buy[1]}}</span>
+                      <span>{{buy[0]}}</span>
+                     </div>
                 </li>
             </ul>
             
@@ -39,8 +53,8 @@
                 <li class="fl w12">{{$t('price')}}</li>
                 <li class="fl w12">{{$t('home.volume')}}</li>
             </ul>
-            <div class="containers scroll" v-if="deList.length>0">
-                <ul v-for="itm in deList" class="list-item color ft12">
+            <div class="containers scroll" v-if="(deList.length>0 )|| (deList2.length>0)">
+                <ul v-show="isSocketComplet" v-for="itm in deList" class="list-item color ft12">
                     <li class="clear flex clr-part bg-hov alcenter">
                         <span class=" ">{{itm.time}}</span>
                         <span :class="itm.way == 1?'red':'green'">{{itm.way == 1?$t('center.outsell'):$t('center.inbuy')}}</span>
@@ -48,8 +62,16 @@
                         <span class="">{{itm.number}}</span>
                     </li>
                 </ul>
+                <ul v-show="!isSocketComplet" v-for="itm in deList2" class="list-item color ft12">
+                    <li class="clear flex clr-part bg-hov alcenter">
+                        <span class=" ">{{itm.ts}}</span>
+                        <span :class="itm.direction == 'buy'?'red':'green'">{{itm.direction == 'buy'?$t('center.outsell'):$t('center.inbuy')}}</span>
+                        <span :class="itm.direction == 'buy'?'red':'green'">{{itm.price}}</span>
+                        <span class="">{{itm.amount}}</span>
+                    </li>
+                </ul>
             </div>
-            <div class="no_data tc" v-if="deList.length<=0">
+            <div class="no_data tc" v-else>
                 <img src="../assets/images/nodata.png" alt="">
                 <p class="fColor2 ft18">{{$t('nodata')}}</p>   
             </div>
@@ -65,13 +87,19 @@ export default {
     return {
       outlist: [],
       inlist: [],
+      outlist2: [],
+      inlist2: [],
       deList:[], //全站交易
+      deList2:[], //全站交易
       load: 1,
       newData: 0,
       currency_name: "",
       legal_name: "",
       currency_id: "",
-      legal_id: ""
+      legal_id: "",
+      isSocketIn:false,
+      isSocketOut:false,
+      isSocketComplet:false,
     };
   },
   created: function() {
@@ -88,6 +116,7 @@ export default {
     that.currency_id = localData.currency_id;
     that.legal_id = localData.legal_id;
     that.connect();
+    that.connect2();
     eventBus.$on("toExchange0", function(data0) {
       that.currency_name = data0.currency_name;
       that.legal_name = data0.legal_name;
@@ -179,25 +208,34 @@ export default {
           // console.log(error)
         });
     },
-    connect() {
+     connect_old() {
       // console.log(legal_id, currency_id);
       var that = this;
       console.log("socket");
       that.$socket.emit("login", this.$makeSocketId());
-      that.$socket.on("transaction", msg => {
+      that.$socket.on("market_trade", msg => {
         console.log(msg);
-        if (msg.type == "transaction") {
+        console.log(msg.data);
+        console.log(msg.symbol,that.currency_name+'/'+that.legal_name);
+
+        if (msg.symbol == (that.currency_name+'/'+that.legal_name)) {
+          var data=msg.data;
+          for(var i in data){
+            var temp=JSON.parse(data[i]);
+            that.deList.unshift(temp);
+          }
+          console.log(data,'-------------------------------------------------------')
           //组件间传值
-          var newPrice = {
-            newprice: msg.last_price,
-            newup: msg.proportion,
-            istoken: msg.token,
-            yesprice: msg.yesterday,
-            toprice: msg.today
-          };
-          setTimeout(() => {
-            eventBus.$emit("toNew", newPrice);
-          }, 1000);
+          // var newPrice = {
+          //   newprice: msg.last_price,
+          //   newup: msg.proportion,
+          //   istoken: msg.token,
+          //   yesprice: msg.yesterday,
+          //   toprice: msg.today
+          // };
+          // setTimeout(() => {
+          //   eventBus.$emit("toNew", newPrice);
+          // }, 1000);
           
          
          
@@ -229,6 +267,103 @@ export default {
             that.outlist = outData;
             that.deList = complete;
           }
+        }
+      });
+    },
+    connect() {
+      // console.log(legal_id, currency_id);
+      var that = this;
+      console.log("socket");
+      that.$socket.emit("login", this.$makeSocketId());
+      that.$socket.on("market_trade", msg => {
+        console.log(msg.symbol,that.currency_name+'/'+that.legal_name);
+        if (msg.symbol == (that.currency_name+'/'+that.legal_name)) {
+          
+          var data=JSON.parse(msg.data);
+          if(data.length>0){
+            that.isSocketComplet=false;
+          }else{
+            that.isSocketComplet=true;
+          }
+          for(var i=0;i<data.length;i++){
+            that.deList2.unshift(data[i]);
+            console.log(that.deList2)
+          }
+          console.log(data,'-------------------------------------------------------')
+          //组件间传值
+          // var newPrice = {
+          //   newprice: msg.last_price,
+          //   newup: msg.proportion,
+          //   istoken: msg.token,
+          //   yesprice: msg.yesterday,
+          //   toprice: msg.today
+          // };
+          // setTimeout(() => {
+          //   eventBus.$emit("toNew", newPrice);
+          // }, 1000);
+          
+         
+         
+          // var inData = JSON.parse(msg.in);
+          // var outData = JSON.parse(msg.out);
+          // console.log(inData);
+          // console.log(outData)
+          // if(msg.complete){
+          //      var complete = JSON.parse(msg.complete);
+          // }     
+          // var len01 = inData.length;
+          // var len02 = outData.length;
+          
+          // if (msg.legal_id == that.legal_id && msg.currency_id == that.currency_id) {
+          //   console.log(msg.last_price)
+          //   that.newData = msg.last_price;
+          //   var priceData = {
+          //    buyPrice:inData.length !=0?inData[0].price:'',
+          //    sellPrice:outData.length !=0?outData[len02-1].price:''
+          // }
+          // if(len01 == 0){
+          //   priceData.buyPrice = ''
+          // }
+          // if(len02 == 0){
+          //   priceData.sellPrice = ''
+          // }
+          //  eventBus.$emit("priceToTrade", priceData);
+          //   that.inlist = inData;
+          //   that.outlist = outData;
+          //   that.deList = complete;
+          // }
+        }
+      });
+    }
+    ,
+    connect2() {
+      // console.log(legal_id, currency_id);
+      var that = this;
+      console.log("socket");
+      that.$socket.emit("login", this.$makeSocketId());
+      that.$socket.on("market_depth", msg => {
+        console.log(msg);
+        console.log(msg.data);
+        console.log(msg.symbol,that.currency_name+'/'+that.legal_name);
+
+        if (msg.symbol == (that.currency_name+'/'+that.legal_name)) {
+          
+          // 买盘
+          var buys=JSON.parse( msg.bids);
+          // 卖盘
+          var sells=JSON.parse(msg.asks);
+          if(buys.length>0){
+           that.isSocketIn=false; 
+          }else{
+            that.isSocketIn=true;
+          }
+          if(sells.length>0){
+           that.isSocketOut=false; 
+          }else{
+            that.isSocketOut=true;
+          }
+          that.outlist2=sells;
+          that.inlist2=buys;
         }
       });
     }
