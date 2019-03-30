@@ -19,8 +19,8 @@
                  <li v-show="!isSocketIn" :class="['curPer','redColor','bg-hov',{'bg-evev':index%2 != 0}]" v-for="(out,index) in outlist2" @click="price(out.price)">
                     <div v-if="index<7" class="flex1">
                       <span >{{$t('center.sellout')}} {{7-index}}</span>
-                      <span style="font-weight:600">{{out[1]}}</span>
-                      <span>{{out[0]}}</span>
+                      <span style="font-weight:600">{{out[0]}}</span>
+                      <span>{{out[1]}}</span>
                     </div>
                 </li>
                 <div class="line bdr-part"></div>
@@ -32,8 +32,8 @@
                  <li v-show="!isSocketOut" class="curPer ceilColor bg-hov" v-for="(buy,inde) in inlist2"  @click="price(buy.price)">
                     <div v-if="inde<7" class="flex1">
                       <span>{{$t('center.buyin')}} {{inde+1}}</span>
-                      <span style="font-weight:600">{{buy[1]}}</span>
-                      <span>{{buy[0]}}</span>
+                      <span style="font-weight:600">{{buy[0]}}</span>
+                      <span>{{buy[1]}}</span>
                      </div>
                 </li>
             </ul>
@@ -135,6 +135,11 @@ export default {
       that.legal_id = data.legal_id;
       that.buy_sell(that.legal_id,that.currency_id);
     });
+    eventBus.$on('toExchange_sign',function(ischange){
+      that.isSocketIn=true;
+      that.isSocketOut=true;
+      that.isSocketComplet=true;
+    })
   //接收market组件传来的最新价
   
     eventBus.$on("toexchangeNowprice", function(data) {
@@ -369,8 +374,11 @@ export default {
           
           // 买盘
           var buys=JSON.parse( msg.bids);
+          console.log(buys);
           // 卖盘
           var sells=JSON.parse(msg.asks);
+          console.log(sells);
+
           if(buys.length>0){
            that.isSocketIn=false; 
           }else{
@@ -385,8 +393,8 @@ export default {
           that.inlist2=buys;
           // that.newData = msg.last_price;
           var priceData = {
-             buyPrice:buys.length !=0?inData[0][1]:'',
-             sellPrice:outData.length !=0?outData[len02-1][1]:''
+             buyPrice:buys.length !=0?buys[0][0]:'',
+             sellPrice:sells.length !=0?sells[sells.length-1][0]:''
           }
            eventBus.$emit("priceToTrade", priceData);
         }

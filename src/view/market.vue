@@ -467,6 +467,7 @@ export default {
       //向兄弟组件传数据
       eventBus.$emit("toTrade", tradeDatas);
       eventBus.$emit("toExchange", tradeDatas);
+      eventBus.$emit("toExchange_sign", 'true');
       // 存本地
       window.localStorage.setItem("tradeData", JSON.stringify(tradeDatas));
     }
