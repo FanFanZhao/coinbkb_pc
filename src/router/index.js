@@ -62,6 +62,7 @@ import myCandy from '@/components/candy/myCandy'
 import candyExchange from '@/components/candy/candyExchange'
 import wakuang from '@/components/candy/wakuang'
 import mydownload from '@/components/candy/download'
+import baipishu from '@/view/baipishu';
 Vue.use(Router)
 export default new Router({
 	routes: [
@@ -355,7 +356,11 @@ export default new Router({
 			name: 'bindPhone',
 			component: bindPhone
 		},
-		
+		{
+			path: '/baipishu',
+			name: 'baipishu',
+			component: baipishu
+		},
 		{
 			path: '/components/noticeDetail',
 			name: 'noticeDetail',

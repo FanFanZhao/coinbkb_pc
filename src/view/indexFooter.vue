@@ -27,7 +27,9 @@
                         <!-- <router-link :to="{path:'/dealCenter'}" tag="span">{{$t('header.currency')}}</router-link> -->
                     </li>
                      <li class="mb15">
-                        <router-link :to="{path:'/myCandy'}" tag="span"  class="mr15" >{{$t('header.candy')}}</router-link>
+                        <router-link :to="{path:'/baipishu'}" tag="span"  class="mr15" >白皮书</router-link>
+
+                        <!-- <router-link :to="{path:'/myCandy'}" tag="span"  class="mr15" >{{$t('header.candy')}}</router-link> -->
                         <!-- <router-link :to="{path:'/candyExchange'}" tag="span">{{$t('footer.teach')}}</router-link> -->
                     </li>
                     <li class="">

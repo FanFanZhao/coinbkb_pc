@@ -77,7 +77,7 @@ export default {
                 }, 1500);
                 })
                 .catch(res => {
-                    layer.msg(res.data.message);
+                    layer.msg(res);
                 });
                  
            

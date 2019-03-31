@@ -304,6 +304,7 @@ export default {
         if (msg.symbol == (that.currency_name+'/'+that.legal_name)) {
           
           var data=JSON.parse(msg.data);
+          var mydata=[];
           if(data.length>0){
             that.isSocketComplet=false;
           }else{
@@ -311,9 +312,14 @@ export default {
           }
           for(var i=0;i<data.length;i++){
             that.deList2.unshift(data[i]);
+           
             console.log(that.deList2)
           }
-          console.log(data,'-------------------------------------------------------')
+          var len=that.deList2.length;
+           if(len>40){
+              that.deList2.splice(39,len-40);
+            }
+          // console.log(that.deList2,'-------------------------------------------------------')
           //组件间传值
           // var newPrice = {
           //   newprice: msg.last_price,
