@@ -276,7 +276,7 @@ export default {
   },
   mounted() {
     this.getSwiper();
-    
+    console.log(this.$http);
     var mySwiper = new Swiper(".swiper-container01", {
       // 如果需要分页器
       pagination: ".swiper-pagination01",
