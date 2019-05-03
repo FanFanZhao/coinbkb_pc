@@ -276,7 +276,6 @@ export default {
   },
   mounted() {
     this.getSwiper();
-    console.log(this.$http);
     var mySwiper = new Swiper(".swiper-container01", {
       // 如果需要分页器
       pagination: ".swiper-pagination01",
@@ -382,7 +381,7 @@ export default {
       }
     },
     getSwiper(){
-      var url = this.$i18n.locale == 'zh'?'/api/news/pcPic':'/api/news/pcEngPic'
+      var url = this.$i18n.locale == 'zh'?'/api/news/pcPic':'/api/news/pcEngPic';
       this.$http({
         url:url
       }).then(res => {

@@ -38,7 +38,7 @@ window.eventBus = new Vue()
 let bus = new Vue()
 Vue.prototype.bus = bus
 // Vue.use(VueSocketio, 'http://47.75.200.255:2220/');
-Vue.use(VueSocketio, 'https://www.coinbkb.net:2220/');
+Vue.use(VueSocketio, 'http://47.244.182.198:2220/');
 Vue.prototype.$changeTheme = function (type) {
 	var head = document.querySelector('head');
 	var link = document.querySelector('link#darkTheme');
@@ -113,7 +113,7 @@ Vue.config.productionTip = false;
 Axios.defaults.transformRequest = [(data) => {
 	return Qs.stringify(data)
 }]
-Vue.use( Axios);
+Vue.use(VueAxios, Axios);
 Vue.use(Util);
 Vue.filter('numFilter', function (value) {
 	//截取当前数据到小数点后五位
