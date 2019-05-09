@@ -583,8 +583,8 @@ export default {
   /* display: flex; */
 }
 .coin-wrap li span:first-child img {
-  margin-right: 2px;
-  width: 16px;
+  /* margin-right: 2px; */
+  /* width: 16px; */
   vertical-align: sub;
 }
 .coin-wrap li span:first-child i {
