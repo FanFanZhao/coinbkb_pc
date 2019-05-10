@@ -25,7 +25,7 @@
                     </div>
                     <!--验证码-->
                    
-                    <div class="register-input bdr-part">
+                    <div class="register-input bdr-part hide">
                         <span class="register-item">{{$t('code')}}</span>
                         <div class="flex">
                     <input type="text" v-model="code" class="codes" id="code">
@@ -158,10 +158,10 @@ export default {
         layer.tips(this.$t('lay.pwdliu'), "#pwd");
         return;
       }
-      if (this.code == '') {
-        layer.tips(this.$t('lay.notcode'), "#code");
-        return;
-      }
+      // if (this.code == '') {
+      //   layer.tips(this.$t('lay.notcode'), "#code");
+      //   return;
+      // }
       var i = layer.load();
       this.$http({
         url: '/api/' + "user/pc_login",
@@ -169,7 +169,7 @@ export default {
         data: {
           user_string: account_number,
           password: password,
-          code:this.code,
+          // code:this.code,
           type: 1
         }
       })
@@ -183,6 +183,7 @@ export default {
             localStorage.setItem("accountNum", account_number);
             this.$store.commit("setAccountNum");
             this.userInfo();
+            // return;
             setTimeout(() => {
                this.$router.push("/");
             }, 1000);
